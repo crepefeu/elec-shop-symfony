@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le produit{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <h1 class="h2">Modifier un produit</h1>
+    {{ include('product/base-form.html.twig', {'button_label': 'Modifier le produit'}) }}
+</div>
+{% endblock %}

@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-    {% block stylesheets %}
-    {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="{{asset('css/style.css')}}">
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>"> {% block stylesheets %}{% endblock %}
 
-    {% block javascripts %}
-        {% block importmap %}{{ importmap('app') }}{% endblock %}
-    {% endblock %}
-</head>
+		{% block javascripts %}
+			{% block importmap %}
+				{{ importmap('app') }}
+			{% endblock %}
+		{% endblock %}
+	</head>
 
-<body>
-    <nav class="navbar navbar-dark bg-primary sticky-top px-4 navbar-expand-lg">
-        <div class="d-flex w-100">
-            <a class="navbar-brand" href="#">Elec'Shop</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse w-100" id="navbarNav">
-                <ul class="navbar-nav w-100 d-flex justify-content-between">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Nos produits</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-light" href="{{path('app_logout')}}">Se Déconnecter</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    {% block body %}{% endblock %}
-    <div class="bg-primary text-bg-dark">
+	<body>
+		<nav class="navbar navbar-dark bg-primary sticky-top px-4 navbar-expand-lg">
+			<div class="d-flex w-100">
+				<a class="navbar-brand" href="{{path('app_product_index')}}">Elec'Shop</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse w-100 ms-3" id="navbarNav">
+					<ul class="navbar-nav w-100 d-flex justify-content-between">
+						<li class="nav-item">
+							<a class="nav-link active" href="{{path('app_product_index')}}">Nos produits</a>
+						</li>
+						<li class="nav-item">
+							<a class="btn btn-light" href="{{path('app_logout')}}">Déconnexion</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		{% block body %}{% endblock %}
+		<div class="bg-primary text-bg-dark">
 			<div class="container mt-5 bg-primary">
 				<footer class="pt-5">
 					<div class="row">
@@ -106,19 +107,18 @@
 
 						<div class="col-md-5 offset-md-1">
 							<form>
-								<h5>Subscribe to our newsletter</h5>
-								<p>Monthly digest of what's new and exciting from us.</p>
+								<h5>Abonnez-vous à notre newsletter</h5>
 								<div class="d-flex flex-column flex-sm-row w-100 gap-2">
-									<label for="newsletter1" class="visually-hidden">Email address</label>
-									<input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-									<button class="btn btn-primary" type="button">Subscribe</button>
+									<label for="newsletter1" class="visually-hidden">Adresse email</label>
+									<input id="newsletter1" type="text" class="form-control" placeholder="Adresse email">
+									<button class="btn btn-light" type="button">S'abonner</button>
 								</div>
 							</form>
 						</div>
 					</div>
 
 					<div class="d-flex flex-column flex-sm-row justify-content-between py-4 border-top">
-						<p>© 2024 Company, Inc. All rights reserved.</p>
+						<p>© 2024 Elec'Shop, Tous droits réservés</p>
 						<ul class="list-unstyled d-flex">
 							<li class="ms-3">
 								<a class="link-body-emphasis" href="#">
@@ -145,6 +145,6 @@
 					</div>
 				</footer>
 			</div>
-</body>
-
+		</body>
+	</body>
 </html>

@@ -1,4 +1,4 @@
-{% extends 'base-login.html.twig' %}
+{% extends 'base-register-form.html.twig' %}
 
 {% block title %}Elec'Shop Inscription/Connexion
 {% endblock %}
@@ -9,7 +9,7 @@
     </div>
 	<div class="row">
 		<div class="d-flex justify-content-center">
-			<form class="form-ctn" method="post">
+			<form class="w-50" method="post">
 				{% if error %}
 					<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 				{% endif %}

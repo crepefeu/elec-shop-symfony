@@ -1,70 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produits{% endblock %}
+{% block title %}Produits
+{% endblock %}
 
 {% block body %}
-<div class="mt-5 container">
-    
-    {% if is_granted('ROLE_ADMIN') %}
-    <h1 class="h2">Dashboard administrateur</h1>
-    <a href="{{ path('app_product_new') }}" class="btn btn-primary mb-4">Créer un produit</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>Prix</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for product in products %}
-            <tr>
-                <td>{{ product.name }}</td>
-                <td>{{ product.description }}</td>
-                <td><img src="{{asset('img/' ~ product.image)}}" width="100" alt=""></td>
-                <td>{{ product.price }}</td>
-                <td>
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn btn-secondary">Modifier</a>
-                    <form method="post" action="{{ path('app_product_delete', {'id': product.id}) }}" onsubmit="return confirm('Vous voulez vraiment supprimer le produit?');">
-                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
-                        <button class="btn btn-danger mt-2">Supprimer</button>
-                    </form>
-                    {% endif %}
-                </td>
-            </tr>
-            {% else %}
-            <tr>
-                <td colspan="4">Pas de données</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% endif %}
-    {% if not is_granted('ROLE_ADMIN') %}
-    <div class="container">
-		<h1 class="mt-5 mb-4">Nos produits</h1>
-		<div class="row">
-			{% for product in products %}
-				<div class="col-md-6">
-					<div class="card mb-4">
-						<div class="w-full" style="width:100%; height:400px;">
-                            <img src="{{asset('img/' ~ product.image)}}" width="100" alt="" class="card-img-top object-fit-contain h-100">
-						</div>
-						<div class="card-body">
-							<h5 class="card-title">{{ product.name }}</h5>
-							<p class="card-text">{{ product.description }}</p>
-							<div class="d-flex justify-content-between align-item-center">
-								<a href="" class="btn btn-dark">View details</a>
+	<div class="mt-5 container min-vh-100">
+
+		{% if is_granted('ROLE_ADMIN') %}
+			<div class="d-flex justify-content-between">
+				<h1 class="h2">Dashboard administrateur</h1>
+				<a href="{{ path('app_product_new') }}" class="btn btn-primary mb-4">Créer un produit</a>
+			</div>
+			<div class="">
+				<table class="table mt-4 shadow-sm border-dark-subtle table-bordered">
+					<thead>
+						<tr>
+							<th>Nom</th>
+							<th>Description</th>
+							<th>Image</th>
+							<th>Prix</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for product in products %}
+							<tr>
+								<td>{{ product.name }}</td>
+								<td>{{ product.description }}</td>
+								<td><img src="{{asset('img/' ~ product.image)}}" width="100" alt=""></td>
+								<td>{{ product.price }}</td>
+								<td>
+									{% if is_granted('ROLE_ADMIN') %}
+										<div class="d-flex gap-5 float-end">
+											<a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn btn-secondary">Modifier</a>
+											<form method="post" action="{{ path('app_product_delete', {'id': product.id}) }}" onsubmit="return confirm('Vous voulez vraiment supprimer le produit?');">
+												<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+												<button class="btn btn-danger">Supprimer</button>
+											</form>
+										</div>
+									{% endif %}
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="4">Aucune donnée trouvée</td>
+								<td>
+									<a href="{{ path('app_product_new') }}" class="btn btn-primary">Créer un produit</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		{% endif %}
+		{% if not is_granted('ROLE_ADMIN') %}
+			<div class="container">
+				<h1 class="mt-5 mb-4">Nos produits</h1>
+				<div class="row">
+					{% for product in products %}
+						<div class="col-md-6">
+							<div class="card mb-4 shadow-sm">
+								<div class="w-full" style="width:100%; height:400px;">
+									<img src="{{asset('img/' ~ product.image)}}" width="100" alt="" class="card-img-top object-fit-contain h-100">
+								</div>
+								<div class="card-body">
+									<h5 class="card-title">{{ product.name }}</h5>
+									<p class="card-text">{{ product.description }}</p>
+									<p class="card-text">{{ product.price }}
+										€</p>
+								</div>
 							</div>
 						</div>
-					</div>
+					{% endfor %}
 				</div>
-			{% endfor %}
-		</div>
+			</div>
+		{% endif %}
 	</div>
-    {% endif %}
-</div>
 {% endblock %}

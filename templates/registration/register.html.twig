@@ -1,18 +1,18 @@
-{% extends 'base-login.html.twig' %}
+{% extends 'base-register-form.html.twig' %}
 
 {% block title %}Elec'Shop Inscription/Connexion{% endblock %}
 
 {% block body %}
 <div class="row">
     <div class="d-flex justify-content-center">
-        <div class="form-ctn">
+        <div class="w-50">
             <h1>S'inscrire</h1>
             {{ form_errors(registrationForm) }}
             {{ form_start(registrationForm) }}
             {{ form_row(registrationForm.email) }}
             {{ form_row(registrationForm.fullName) }}
             {{ form_row(registrationForm.plainPassword) }}
-            <button type="submit" class="btn btn-primary">Inscrire</button>
+            <button type="submit" class="btn btn-primary">S'inscrire</button>
             <a href="{{path('app_login')}}" class="btn btn-primary">Se connecter</a>
 
             {{ form_end(registrationForm) }}

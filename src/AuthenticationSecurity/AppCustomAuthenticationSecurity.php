@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Security;
+namespace App\AuthenticationSecurity;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\SecurityRequestAttributes;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
+class AppCustomAuthenticationSecurity extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 

@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
-use App\Security\AppCustomAuthenticator;
+use App\AuthenticationSecurity\AppCustomAuthenticationSecurity;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -23,7 +23,7 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
+            // Hash the password before saving it
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
@@ -34,7 +34,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $security->login($user, AppCustomAuthenticator::class, 'main');
+            return $security->login($user, AppCustomAuthenticationSecurity::class, 'main');
         }
 
         return $this->render('registration/register.html.twig', [
