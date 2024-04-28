@@ -27,7 +27,17 @@
 							<tr>
 								<td>{{ product.name }}</td>
 								<td>{{ product.description }}</td>
-								<td><img src="{{asset('img/' ~ product.image)}}" width="100" alt=""></td>
+								<td>
+                                {% if product.image == NULL %}
+                                    <div style="height:400px;">
+                                        <img src="{{asset('img/product-placeholder-wp.jpg')}}" alt="" class="card-img-top object-fit-contain w-100 h-100">
+                                    </div>
+                                {% else %}
+                                    <div style="height:400px;">
+									    <img src="{{asset('img/' ~ product.image)}}" width="100" alt="" class="card-img-top object-fit-contain w-100 h-100">
+                                    </div>
+                                {% endif %}
+                                </td>
 								<td>{{ product.price }}</td>
 								<td>
 									{% if is_granted('ROLE_ADMIN') %}
@@ -61,7 +71,11 @@
 						<div class="col-md-6">
 							<div class="card mb-4 shadow-sm">
 								<div class="w-full" style="width:100%; height:400px;">
+                                {% if product.image == NULL %}
+                                    <img src="{{asset('img/product-placeholder-wp.jpg')}}" width="100" alt="" class="card-img-top object-fit-contain h-100">
+                                {% else %}
 									<img src="{{asset('img/' ~ product.image)}}" width="100" alt="" class="card-img-top object-fit-contain h-100">
+                                {% endif %}
 								</div>
 								<div class="card-body">
 									<h5 class="card-title">{{ product.name }}</h5>
