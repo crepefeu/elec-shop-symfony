@@ -1,0 +1,28 @@
+Executer les commandes suivantes dans le terminal l'endroit du projet :
+
+composer install
+
+php bin/console doctrine:database:create
+php bin/console doctrine:migrations:migrate
+
+Executer ces commandes SQL dans la base de données : 
+- INSERT INTO `user` (`id`, `email`, `roles`, `password`, `full_name`) VALUES
+(1, 'admin@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$10$7u.gh9QlwWyd4BuEGCjareZbWsblLjGnaaTCfs5B5qMRvi2StTVQq', 'Administrateur');
+symfony serve -d
+
+- INSERT INTO `user` (`id`, `email`, `roles`, `password`, `full_name`) VALUES
+(2, 'user@gmail.com', '[\"ROLE_USER\"]', '$2y$10$7u.gh9QlwWyd4BuEGCjareZbWsblLjGnaaTCfs5B5qMRvi2StTVQq', 'Utilisateur');
+symfony serve -d
+
+- ALTER table product ADD price float null
+
+
+Identifiants pour se connecter au site :
+
+Administrateur :
+login : admin@gmail.com
+password : Azerty1234
+
+Utilisateur :
+login : user@gmail.com
+password : Azerty1234
